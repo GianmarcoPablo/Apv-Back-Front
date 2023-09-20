@@ -1,1 +1,6 @@
 export { default as Alerta } from "./Alerta"
+export { default as Header } from "./Header"
+export { default as Footer } from "./Footer"
+export { default as ListadoPacientes } from "./ListadoPacientes"
+export { default as Formulario } from "./Formulario"
+export { default as Paciente } from "./Paciente"

@@ -8,6 +8,7 @@ export default function NuevoPassword() {
     const [password, setPassword] = useState("")
     const [alerta, setAlerta] = useState({})
     const [tokenValido, setTokenValido] = useState(false)
+    const [passwordModificado, setPasswordModificado] = useState(false)
 
     const { token } = useParams()
     useEffect(() => {
@@ -16,7 +17,7 @@ export default function NuevoPassword() {
                 const { data } = await clienteAxios(`/veterinarios/olvide-password/${token}`)
                 console.log(data);
                 setAlerta({
-                    msg: data.msg,
+                    msg: "Coloca tu nuevo password",
                     error: false
                 })
                 setTokenValido(true)
@@ -47,6 +48,7 @@ export default function NuevoPassword() {
                 mensaje: data.msg,
                 error: false
             })
+            setPasswordModificado(true)
         } catch (error) {
             setAlerta({
                 mensaje: error.response.data.nsg,
@@ -83,7 +85,8 @@ export default function NuevoPassword() {
                             className="bg-indigo-700 w-full py-3 rounded-lg text-white uppercase font-bold mt-5 hover:bg-indigo-900 cursor-pointer transition-colors"
                         />
                     </form>
-                    <Link className="block text-center py-2 text-gray-600 font-semibold" to={"/"}>¿Ya tienes una cuenta? Inicia Sessión</Link>
+                    {passwordModificado && <Link className="block text-center py-2 text-gray-600 font-semibold" to={"/"}>Inicia Sessión</Link>}
+
                 </>
             )}
         </div>
