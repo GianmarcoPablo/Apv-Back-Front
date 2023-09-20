@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Login, Registrar, ConfirmarCuenta, OlvidePassword, NuevoPassword, AdministrarPaciente } from "./pages"
+import { Login, Registrar, ConfirmarCuenta, OlvidePassword, NuevoPassword, AdministrarPaciente, EditarPerfil, CambiarPassword } from "./pages"
 import AuthLayout from "./Layout/AuthLayout"
 import AdminLayout from "./Layout/adminLayout"
 import PacientesProvider from "./context/PacientesProvider"
@@ -23,6 +23,8 @@ export default function App() {
                         {/** privadas */}
                         <Route path="/admin" element={<AdminLayout />}>
                             <Route index={true} element={<AdministrarPaciente />} />
+                            <Route path="perfil" element={<EditarPerfil />} />
+                            <Route path="cambiar-password" element={<CambiarPassword />} />
                         </Route>
                     </Routes>
                 </PacientesProvider>

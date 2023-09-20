@@ -11,7 +11,7 @@ export default function Header() {
                 <h1 className='font-bold text-2xl text-indigo-200 text-center'>Administrador de Pacientes de <span className='text-white font-black'>Veterinaria</span></h1>
                 <nav className="flex flex-col lg:flex-row gap-4 items-center mt-5 lg:mt-0">
                     <Link to={"/admin"} className="text-white text-sm uppercase font-bold" >Pacientes</Link>
-                    <Link to={"/perfil"} className="text-white text-sm uppercase font-bold" >Pefil</Link>
+                    <Link to={"/admin/perfil"} className="text-white text-sm uppercase font-bold" >Pefil</Link>
                     <button
                         type="button"
                         className="bg-red-700 text-white text-sm uppercase font-bold p-2 hover:bg-red-800 transition-colors cursor-pointer"

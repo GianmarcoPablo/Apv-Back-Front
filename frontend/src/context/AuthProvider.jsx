@@ -40,12 +40,17 @@ export default function AuthProvider({ children }) {
         setAuth({})
     }
 
+    const actualizarPerfil = (datos) => {
+        console.log(datos);
+    }
+
     return (
         <authContext.Provider value={{
             auth,
             cargando,
             cerrarSession,
-            setAuth
+            setAuth,
+            actualizarPerfil
         }}>
             {children}
         </authContext.Provider>
