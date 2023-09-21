@@ -40,8 +40,54 @@ export default function AuthProvider({ children }) {
         setAuth({})
     }
 
-    const actualizarPerfil = (datos) => {
-        console.log(datos);
+    const actualizarPerfil = async (datos) => {
+        const token = localStorage.getItem("token")
+        if (!token) {
+            setCargando(false)
+            return
+        }
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        }
+        try {
+            const { data } = await clienteAxios.put(`veterinarios/perfil/${datos._id}`, datos, config)
+            return {
+                mensaje: "Almacenado correctamente"
+            }
+        } catch (error) {
+            return {
+                mensaje: error.response.data.msg,
+                error: true
+            }
+        }
+    }
+
+    const guardarPassword = async (datos) => {
+        const token = localStorage.getItem("token")
+        if (!token) {
+            setCargando(false)
+            return
+        }
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        }
+        try {
+            const { data } = await clienteAxios.put("/veterinarios/actualizar-password", datos, config)
+            return {
+                mensaje: data.msg
+            }
+        } catch (error) {
+            return {
+                mensaje: error.response.data.msg,
+                error: true
+            }
+        }
     }
 
     return (
@@ -50,7 +96,8 @@ export default function AuthProvider({ children }) {
             cargando,
             cerrarSession,
             setAuth,
-            actualizarPerfil
+            actualizarPerfil,
+            guardarPassword
         }}>
             {children}
         </authContext.Provider>
